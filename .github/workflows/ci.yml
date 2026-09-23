@@ -40,7 +40,7 @@ jobs:
         run: |
           pacman -Syu --noconfirm --needed python python-pyqt6 pyalpm \
               python-dbus polkit dbus python-pytest python-hypothesis \
-              python-pytest-qt python-typing-extensions python-setuptools \
+              python-pytest-qt python-typing_extensions python-setuptools \
               python-build python-installer python-wheel
           # makepkg refuses root; the container's `nobody` account is locked,
           # so packaging steps run as a dedicated builder user.

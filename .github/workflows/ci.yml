@@ -21,6 +21,8 @@ jobs:
           sudo apt-get install -y -qq libgl1 libegl1 libxkbcommon0 dbus-x11
       - name: ruff
         run: ruff check src tests
+      - name: ruff format
+        run: ruff format --check src tests
       - name: mypy --strict
         run: mypy -p cachyuninstall --config-file mypy.ini
       - name: unit + security + property
@@ -37,15 +39,21 @@ jobs:
       - name: Install dependencies
         run: |
           pacman -Syu --noconfirm --needed python python-pyqt6 pyalpm \
-              python-dbus polkit dbus python-pytest python-hypothesis python-pytest-qt
+              python-dbus polkit dbus python-pytest python-hypothesis \
+              python-pytest-qt python-typing-extensions python-setuptools \
+              python-build python-installer python-wheel
+          # makepkg refuses root; the container's `nobody` account is locked,
+          # so packaging steps run as a dedicated builder user.
+          useradd -m -s /bin/bash builder
       - name: Tests
         run: QT_QPA_PLATFORM=offscreen python -m pytest tests -q
-      - name: Package metadata sanity
+      - name: Package metadata sanity (unprivileged)
         run: |
-          makepkg --printsrcinfo > /tmp/srcinfo && diff -q /tmp/srcinfo .SRCINFO || \
+          chown -R builder:builder .
+          su builder -s /bin/bash -c "makepkg --printsrcinfo" > /tmp/srcinfo
+          diff -q /tmp/srcinfo .SRCINFO || \
             { echo ".SRCINFO out of sync with PKGBUILD"; exit 1; }
-      - name: Build package
+      - name: Build package (unprivileged)
         run: |
-          chown -R nobody:nobody .
-          sudo -u nobody bash scripts/mksource.sh || su nobody -s /bin/bash -c "bash scripts/mksource.sh"
-          su nobody -s /bin/bash -c "makepkg --syncdeps --noconfirm --skipinteg"
+          su builder -s /bin/bash -c "bash scripts/mksource.sh"
+          su builder -s /bin/bash -c "makepkg --noconfirm --skipinteg"

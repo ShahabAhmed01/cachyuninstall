@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+
 from cachyuninstall.core.alpm_session import AlpmSession
 from cachyuninstall.core.models import InstallReason, Origin, PackageName
 from tests.harness.fake_alpm import (
@@ -13,8 +15,11 @@ from tests.harness.fake_alpm import (
 )
 
 
-def _session(world, sync_map=None) -> AlpmSession:
-    s = AlpmSession(handle_factory=fake_handle_factory(world, sync_map))
+def _session(world, sync_map=None, dbpath=None) -> AlpmSession:
+    # dbpath defaults to the real system DB path; tests that exercise
+    # generation() must pass a temp dir (CI runners have no /var/lib/pacman).
+    kwargs = {} if dbpath is None else {"dbpath": dbpath}
+    s = AlpmSession(handle_factory=fake_handle_factory(world, sync_map), **kwargs)
     return s
 
 
@@ -94,9 +99,16 @@ def test_owner_index_from_files() -> None:
 
 def test_generation_marker(tmp_path) -> None:
     world = world_single()
-    session = _session(world)
+    local = tmp_path / "local"
+    local.mkdir()
+    session = _session(world, dbpath=str(tmp_path))
     generation = session.generation()
     assert generation > 0
+    # The marker must track local-DB changes (it is what invalidates stale
+    # plans); bump the local dir's mtime by a guaranteed margin.
+    st = local.stat()
+    os.utime(local, ns=(st.st_atime_ns, st.st_mtime_ns + 1_000_000_000))
+    assert session.generation() != generation
 
 
 def test_light_enumeration_marks_unknown_and_skips_detail() -> None:

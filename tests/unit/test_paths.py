@@ -107,7 +107,18 @@ class TestSafeDeletion:
         target.mkdir()
         identity = FileIdentity.capture(target)
         target.rmdir()
-        target.mkdir()  # same path, new inode → stale plan detection
+        # Recreating the same path must yield a new inode — but filesystems
+        # (ext4 on CI runners) happily recycle the just-freed inode number.
+        # Occupy freed numbers with decoys until the recreation is genuinely
+        # a new object, so the staleness check is exercised deterministically.
+        for i in range(8):
+            (home / ".config" / f"decoy-{i}").touch()
+            target.mkdir()
+            if FileIdentity.capture(target) != identity:
+                break
+            target.rmdir()
+        else:  # pragma: no cover - inode recycling of 8 numbers in a row
+            raise AssertionError("could not force a new inode for the same path")
         fd, name = open_parent_nofollow(target)
         try:
             with pytest.raises(FileChanged):

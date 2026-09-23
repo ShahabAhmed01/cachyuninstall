@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install tooling (non-pyalpm parts)
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff mypy pytest hypothesis pytest-qt PyQt6
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libgl1 libegl1 libxkbcommon0 dbus-x11
+      - name: ruff
+        run: ruff check src tests
+      - name: mypy --strict
+        run: mypy -p cachyuninstall --config-file mypy.ini
+      - name: unit + security + property
+        run: pytest tests/unit tests/security tests/property -q
+      - name: ui tests (offscreen)
+        run: QT_QPA_PLATFORM=offscreen pytest tests/ui -q
+
+  arch-integration:
+    # Read-only integration against a real, disposable Arch system (§134).
+    container: archlinux:base-devel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          pacman -Syu --noconfirm --needed python python-pyqt6 pyalpm \
+              python-dbus polkit dbus python-pytest python-hypothesis python-pytest-qt
+      - name: Tests
+        run: QT_QPA_PLATFORM=offscreen python -m pytest tests -q
+      - name: Package metadata sanity
+        run: |
+          makepkg --printsrcinfo > /tmp/srcinfo && diff -q /tmp/srcinfo .SRCINFO || \
+            { echo ".SRCINFO out of sync with PKGBUILD"; exit 1; }
+      - name: Build package
+        run: |
+          chown -R nobody:nobody .
+          sudo -u nobody bash scripts/mksource.sh || su nobody -s /bin/bash -c "bash scripts/mksource.sh"
+          su nobody -s /bin/bash -c "makepkg --syncdeps --noconfirm --skipinteg"

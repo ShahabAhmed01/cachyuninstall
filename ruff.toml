@@ -1,0 +1,73 @@
+target-version = "py311"
+line-length = 110
+src = ["src", "tests"]
+
+[lint]
+select = [
+    "E", "W",     # pycodestyle
+    "F",          # pyflakes
+    "I",          # isort
+    "B",          # bugbear
+    "C4",         # comprehensions
+    "UP",         # pyupgrade
+    "S",          # bandit security rules
+    "SIM",        # simplify
+    "RUF",
+    "PTH",        # pathlib usage
+    "PL",         # pylint subset
+]
+ignore = [
+    "PLR0913",   # planner/preview APIs legitimately take several params
+    "PLR2004",   # magic values are named where they carry meaning
+]
+
+[lint.per-file-ignores]
+"tests/**" = [
+    "S101",      # asserts are the point of tests
+    "PLC0415",   # function-level imports keep fixtures lazy
+    "E402",      # importorskip/skip before imports
+    "PLW0603",   # fixture globals pattern in tests
+    "PTH",       # tmp_path fixtures exercise real os-level edge cases
+    "S108",      # synthetic fixtures use tmp dirs intentionally
+    "B017",
+]
+"src/cachyuninstall/core/paths.py" = [
+    "PTH",       # dirfd/O_NOFOLLOW semantics are os-only by design
+    "PLR0911",   # classification is a decision tree; returns are the point
+]
+"src/cachyuninstall/core/filesystem.py" = [
+    "PTH",       # fd-based rename/remove needs os primitives
+    "SIM105", "S110",  # best-effort close paths
+    "PLC0415",
+]
+"src/cachyuninstall/core/leftovers.py" = [
+    "PTH112", "PTH114",  # symlink semantics require os.path here
+    "PTH208",
+]
+"src/cachyuninstall/core/alpm_session.py" = [
+    "PTH118", "PTH116",  # dbpath strings mirror libalpm's interface
+    "S110",        # skip of broken single entries is a documented behavior
+    "SIM105",
+    "PLC0415",     # pyalpm lazily imported so unit tests need no system binding
+]
+"src/cachyuninstall/core/process.py" = ["PTH115", "PTH208", "S110", "SIM105"]
+"src/cachyuninstall/core/planner.py" = ["PLR0912"]  # analysis is branchy by nature
+"src/cachyuninstall/providers/flatpak.py" = [
+    "S603",      # subprocess is the provider's defined transport; argv is fixed
+    "PLR0911",
+]
+"src/cachyuninstall/privilege/helper.py" = ["S110", "SIM105", "PLC0415"]
+"src/cachyuninstall/privilege/backend.py" = ["S110", "SIM105", "B017", "PTH118", "PTH116", "PLR0912", "PLC0415"]
+"src/cachyuninstall/ui/main_window.py" = ["PLR0915"]
+"src/cachyuninstall/persistence/settings.py" = ["PTH105", "PTH123"]
+"src/cachyuninstall/persistence/history.py" = ["PLR0912"]
+# Deliberate lazy imports: optional/heavy deps (pyalpm, PyQt6, dbus) import
+# inside functions so `--help`, unit tests and non-GUI hosts work without them.
+"src/cachyuninstall/__main__.py" = ["PLC0415"]
+"src/cachyuninstall/app.py" = ["PLC0415"]
+"src/cachyuninstall/cli.py" = ["PLC0415", "PLR0911"]
+"src/cachyuninstall/privilege/client.py" = ["PLC0415"]
+"src/cachyuninstall/privilege/protocol.py" = ["PLR0912"]  # validation is exhaustive branching
+"src/cachyuninstall/privilege/service.py" = ["PLC0415"]
+"src/cachyuninstall/ui/package_model.py" = ["PLR0911"]   # Qt role dispatch is early-return idiom
+

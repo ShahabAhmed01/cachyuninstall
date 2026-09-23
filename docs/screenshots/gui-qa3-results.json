@@ -1,0 +1,114 @@
+{
+  "harness": "gui-tests-3 (QA M flatpak)",
+  "app": "org.gnome.Calculator",
+  "timestamp": "2026-09-23 22:21:05",
+  "checks": [
+    {
+      "label": "M-00 preconditions: flatpak + both scopes",
+      "pass": true,
+      "detail": "['system', 'user']"
+    },
+    {
+      "label": "M-01 system row listed after enrichment",
+      "pass": true,
+      "detail": "ids sample=['pacman:accountsservice', 'pacman:acl', 'pacman:adwaita-cursors', 'pacman:adwaita-fonts', 'pacman:adwaita-icon-theme', 'pacman:adwaita-icon-theme-legacy']"
+    },
+    {
+      "label": "M-02 user row listed after enrichment (both scopes)",
+      "pass": true,
+      "detail": "total rows=543"
+    },
+    {
+      "label": "M-02b no duplicate rows after enrichment",
+      "pass": true,
+      "detail": "rowCount=543 unique=543"
+    },
+    {
+      "label": "M-03 origin is Flatpak",
+      "pass": true,
+      "detail": "Origin.FLATPAK"
+    },
+    {
+      "label": "M-04 screenshot both scopes listed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "label": "M-05 data marker seeded",
+      "pass": true,
+      "detail": "/root/.var/app/org.gnome.Calculator"
+    },
+    {
+      "label": "M-06 confirm box names system scope",
+      "pass": true,
+      "detail": "This will run Flatpak's own removal for org.gnome.Calculator (system scope), | including its application data (--delete-data). |  | Continue?"
+    },
+    {
+      "label": "M-07 confirm box discloses --delete-data",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "label": "M-08 system removal reported success",
+      "pass": true,
+      "detail": "Removed: Calculator was removed by Flatpak, including its app data."
+    },
+    {
+      "label": "M-09 system row gone, user row survives",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "label": "M-10 CLI: only user scope remains",
+      "pass": true,
+      "detail": "['user']"
+    },
+    {
+      "label": "M-11 --delete-data removed ~/.var/app (system cycle)",
+      "pass": true,
+      "detail": "/root/.var/app/org.gnome.Calculator"
+    },
+    {
+      "label": "M-12 history recorded flatpak uninstall with scope",
+      "pass": true,
+      "detail": "{'action': 'uninstall', 'subject': 'org.gnome.Calculator', 'provider': 'flatpak', 'result': 'success', 'detail': {'scope': 'system'}}"
+    },
+    {
+      "label": "M-13 confirm box names user scope",
+      "pass": true,
+      "detail": "This will run Flatpak's own removal for org.gnome.Calculator (user scope), | including its application data (--delete-data). |  | Continue?"
+    },
+    {
+      "label": "M-14 user removal reported success",
+      "pass": true,
+      "detail": "Removed: Calculator was removed by Flatpak, including its app data."
+    },
+    {
+      "label": "M-15 no Calculator rows remain in table",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "label": "M-16 CLI: removed from both scopes",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "label": "M-17 --delete-data removed ~/.var/app (user cycle)",
+      "pass": true,
+      "detail": "/root/.var/app/org.gnome.Calculator"
+    },
+    {
+      "label": "M-18 two flatpak history entries (system + user)",
+      "pass": true,
+      "detail": "before=10 total=12 flatpak=4"
+    },
+    {
+      "label": "M-19 pacman DB untouched by flatpak removals",
+      "pass": true,
+      "detail": "541 -> 541"
+    }
+  ],
+  "total": 21,
+  "failed": 0
+}

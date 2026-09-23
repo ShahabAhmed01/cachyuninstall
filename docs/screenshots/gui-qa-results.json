@@ -1,0 +1,187 @@
+[
+  {
+    "check": "GUI-00 target installed before E2E",
+    "ok": true,
+    "detail": "konsole"
+  },
+  {
+    "check": "GUI-00b seeded leftovers exist",
+    "ok": true,
+    "detail": "/root/.config/konsole, /root/.local/share/konsole"
+  },
+  {
+    "check": "GUI-01 enrichment completed",
+    "ok": true,
+    "detail": "531 identities"
+  },
+  {
+    "check": "GUI-02 window geometry 1366x768 usable",
+    "ok": true,
+    "detail": "1366x768"
+  },
+  {
+    "check": "GUI-03 screenshot main window",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI-04 keyboard '/' focuses search",
+    "ok": true,
+    "detail": "QLineEdit"
+  },
+  {
+    "check": "GUI-05 search filters list",
+    "ok": true,
+    "detail": "rows=1 for 'konsole'"
+  },
+  {
+    "check": "GUI-06 details metadata matches pacman -Qi",
+    "ok": true,
+    "detail": "title='konsole' version-shown=True (26.08.1-1)"
+  },
+  {
+    "check": "GUI-07 screenshot search+details",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI screenshot tab 1 (03-orphans-tab.png)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI screenshot tab 2 (04-cleanup-tab.png)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI screenshot tab 3 (05-history-tab.png)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI-08 history tab shows prior entries",
+    "ok": true,
+    "detail": "4 shown, 4 recorded"
+  },
+  {
+    "check": "GUI-10 preview dialog opened via Delete key",
+    "ok": true,
+    "detail": "Uninstall Konsole"
+  },
+  {
+    "check": "GUI-11 screenshot preview",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI-12 preview sections present",
+    "ok": true,
+    "detail": "Packages to remove (1) | Dependencies no longer needed afterwards | Kept - required by other applications | Application data (select what to remove)"
+  },
+  {
+    "check": "GUI-13 leftover candidates listed",
+    "ok": true,
+    "detail": "2 candidates"
+  },
+  {
+    "check": "GUI-14 D9 defaults: no leftover preselected (config kept)",
+    "ok": true,
+    "detail": "0/2 preselected"
+  },
+  {
+    "check": "GUI-15 quarantine default ON",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI-15b orphan cascade opt-in default OFF",
+    "ok": true,
+    "detail": "offered=True"
+  },
+  {
+    "check": "GUI-16 cancel: target still installed",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI-17 cancel: no history entry added",
+    "ok": true,
+    "detail": "4 -> 4"
+  },
+  {
+    "check": "GUI-18 cancel: no dialogs left open",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI-19 Uninstall button re-enabled after cancel",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI-20 progress dialog created",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI-21 result box 'Removal complete'",
+    "ok": true,
+    "detail": "Konsole was removed. /  / Packages removed: 1 / Leftover items cleaned: 2 / Space reclaimed: 8.0 KiB /  / Nothing else was modified."
+  },
+  {
+    "check": "GUI-20b progress received REAL events",
+    "ok": true,
+    "detail": "final status='35' bar=100"
+  },
+  {
+    "check": "GUI-22 pacman agrees: target gone",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI-23 target binary gone",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "GUI-24 app gone from list (table refreshed)",
+    "ok": true,
+    "detail": "rows=0"
+  },
+  {
+    "check": "GUI-25 leftovers moved to quarantine",
+    "ok": true,
+    "detail": "cfg_exists=False data_exists=False q_entries=['/root/.config/konsole', '/root/.local/share/konsole', '/root/.config/konsole', '/root/.local/share/konsole']"
+  },
+  {
+    "check": "GUI-26 result box reported cleanup",
+    "ok": true,
+    "detail": "Konsole was removed.\n\nPackages removed: 1\nLeftover items cleaned: 2\nSpace reclaimed: 8.0 KiB\n\nNothing else was modified."
+  },
+  {
+    "check": "GUI-27 history has successful uninstall entry",
+    "ok": true,
+    "detail": "[('cleanup', 'konsole', 'success'), ('uninstall', 'konsole', 'success'), ('cleanup', 'konsole', 'success'), ('uninstall', 'konsole', 'success')]"
+  },
+  {
+    "check": "GUI-28 history has cleanup entry",
+    "ok": true,
+    "detail": "[('cleanup', 'konsole', 'success'), ('uninstall', 'konsole', 'success'), ('cleanup', 'konsole', 'success'), ('uninstall', 'konsole', 'success')]"
+  },
+  {
+    "check": "GUI-29 history tab visibly shows new entry",
+    "ok": true,
+    "detail": "6 rows; first=cleanup \u00b7 konsole \u00b7 local \u00b7 success"
+  },
+  {
+    "check": "GUI-30 direct dependencies NOT removed (no silent cascade)",
+    "ok": true,
+    "detail": "gone=[] survived=30/30"
+  },
+  {
+    "check": "GUI-31 helper journal clean during GUI flow",
+    "ok": true,
+    "detail": ""
+  }
+]

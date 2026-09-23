@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD polkit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
+<policyconfig>
+
+  <vendor>CachyOS</vendor>
+  <vendor_url>https://cachyos.org/</vendor_url>
+  <icon_name>cachyuninstall</icon_name>
+
+  <action id="org.cachyos.uninstall.remove">
+    <description>Remove installed software packages</description>
+    <message>Authentication is required to remove system packages with CachyUninstall.</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/cachyuninstall-helper</annotate>
+  </action>
+
+</policyconfig>

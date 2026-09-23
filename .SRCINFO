@@ -1,0 +1,27 @@
+pkgbase = cachyuninstall
+	pkgdesc = Safe, transparent native uninstaller and leftover analyzer for Arch/CachyOS
+	pkgver = 1.0.0
+	pkgrel = 1
+	url = https://github.com/ShahabAhmed01/cachyuninstall
+	install = cachyuninstall.install
+	arch = any
+	license = GPL-3.0-or-later
+	checkdepends = python-pytest
+	checkdepends = python-hypothesis
+	checkdepends = python-pyqt6
+	makedepends = python-setuptools
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-wheel
+	depends = python
+	depends = python-pyqt6
+	depends = pyalpm
+	depends = python-dbus
+	depends = polkit
+	depends = dbus
+	depends = hicolor-icon-theme
+	optdepends = flatpak: Flatpak application support
+	source = cachyuninstall-1.0.0.tar.gz
+	sha256sums = SKIP
+
+pkgname = cachyuninstall

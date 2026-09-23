@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.cachyos.uninstall</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>CachyUninstall</name>
+  <summary>Safe application uninstaller and leftover analyzer for Arch/CachyOS</summary>
+  <url type="homepage">https://github.com/ShahabAhmed01/cachyuninstall</url>
+  <developer id="org.cachyos"><name>CachyOS Project</name></developer>
+  <description>
+    <p>
+      CachyUninstall helps you remove applications with full transparency:
+      it shows what will be uninstalled, which dependencies stay (and why),
+      and which application data remains afterwards.
+    </p>
+    <p>
+      It uses the real package database (libalpm), an evidence-based leftover
+      scanner that protects files owned by other packages, and all privileged
+      operations go through a small polkit-authorized system service.
+    </p>
+  </description>
+  <categories>
+    <category>System</category>
+    <category>Settings</category>
+  </categories>
+  <launchable type="desktop-id">cachyuninstall.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Main window with the installed applications list</caption>
+      <image type="source">https://raw.githubusercontent.com/ShahabAhmed01/cachyuninstall/main/docs/screenshots/01-main-window.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Removal preview: impact, shared dependencies, leftover data</caption>
+      <image type="source">https://raw.githubusercontent.com/ShahabAhmed01/cachyuninstall/main/docs/screenshots/06-preview-dialog.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Result summary after a completed removal</caption>
+      <image type="source">https://raw.githubusercontent.com/ShahabAhmed01/cachyuninstall/main/docs/screenshots/08-removal-complete.png</image>
+    </screenshot>
+  </screenshots>
+  <provides>
+    <binary>cachyuninstall</binary>
+  </provides>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="1.0.0" date="2026-09-23"/>
+  </releases>
+</component>

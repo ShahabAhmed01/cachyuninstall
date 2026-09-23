@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+
+# Tool caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+
+# Build artifacts (mksource.sh / makepkg — never commit; attach to Releases)
+build-aur/
+cachyuninstall-*.tar.gz
+*.pkg.tar.zst
+*.pkg.tar.zst.sig
+
+# makepkg accidents (must never extract into the repo's src/)
+src/cachyuninstall-*/
+
+# Editor / OS noise
+*.swp
+.DS_Store

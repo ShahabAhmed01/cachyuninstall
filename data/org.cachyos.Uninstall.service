@@ -1,0 +1,5 @@
+[D-BUS Service]
+Name=org.cachyos.Uninstall
+Exec=/usr/bin/cachyuninstall-helper
+User=root
+SystemdService=cachyuninstall-helper.service

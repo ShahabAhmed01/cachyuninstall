@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cachyuninstall"
+version = "1.0.0"
+description = "Safe, transparent native uninstaller and leftover analyzer for Arch/CachyOS"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "CachyUninstall contributors" }]
+keywords = ["arch", "cachyos", "pacman", "uninstaller", "libalpm", "qt"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Systems Administration",
+]
+# Runtime dependencies are provided by Arch packages via the PKGBUILD
+# (python-pyqt6, pyalpm, python-dbus). They are intentionally NOT listed here
+# so that pip-based dev installs can pick wheels from .venv instead.
+
+[project.scripts]
+cachyuninstall = "cachyuninstall.__main__:main"
+cachyuninstall-helper = "cachyuninstall.privilege.service:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+cachyuninstall = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+addopts = "-ra --strict-markers"
+markers = [
+    "integration: touches the real local package database (read-only)",
+    "ui: Qt tests (run offscreen)",
+]
+
+[tool.coverage.run]
+source = ["src/cachyuninstall"]
+branch = true
+
+[tool.coverage.report]
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "@overload",
+]
+show_missing = true

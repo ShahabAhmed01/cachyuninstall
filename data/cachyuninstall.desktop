@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=CachyUninstall
+GenericName=Uninstall Applications
+Comment=Safely remove applications and review their leftover data
+Icon=cachyuninstall
+Exec=cachyuninstall
+Categories=System;Settings;PackageManager;
+Keywords=uninstall;remove;package;pacman;cleanup;
+StartupNotify=true
+SingleMainWindow=true

@@ -1,0 +1,21 @@
+post_install() {
+    # Refresh desktop/icon caches so the launcher appears immediately.
+    update-desktop-database -q /usr/share/applications 2>/dev/null || true
+    gtk-update-icon-cache -q -t /usr/share/icons/hicolor 2>/dev/null || true
+    # Make D-Bus aware of the new system service without reboot.
+    dbus-send --system --type=signal /org/freedesktop/DBus \
+        org.freedesktop.DBus.NameOwnerChanged 2>/dev/null || true
+}
+
+post_upgrade() {
+    post_install
+}
+
+post_remove() {
+    post_install
+    # The daemon must not outlive its unit file: without this, pacman -R
+    # leaves the helper running (held D-Bus name + a stray
+    # /var/tmp/systemd-private-* dir) until reboot. (QA N, package cert.)
+    systemctl stop cachyuninstall-helper.service 2>/dev/null || true
+    systemctl daemon-reload 2>/dev/null || true
+}

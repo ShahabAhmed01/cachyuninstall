@@ -1,0 +1,13 @@
+[sudo] password for eod: Connected to machine cachyuninstall-test. Press ^] three times within 1s to exit session.
+=== stray flatpak procs? ===
+root       20650  0.9  0.0   5748  3756 pts/1    S<s+ 22:01   0:00 /bin/bash -c  pkill -f 'flatpak unin[s]tall' 2>/dev/null sleep 1 echo '=== stray flatpak procs? ===' ps aux | grep '[f]latpak' || echo '  none' echo '=== state after aborted probe (must be BOTH scopes) ===' flatpak list --app --columns=application,installation echo '=== probe2: unflagged info (both scopes) ===' timeout 15 flatpak info --show-size org.gnome.Calculator >/dev/null 2>&1; echo "info_unflagged_rc=$?" echo '=== probe2b: scope flag support on flatpak info ===' timeout 15 flatpak info --system --show-size org.gnome.Calculator >/dev/null 2>&1; echo "info_system_rc=$?" timeout 15 flatpak info --user --show-size org.gnome.Calculator >/dev/null 2>&1; echo "info_user_rc=$?" 
+=== state after aborted probe (must be BOTH scopes) ===
+[1mApplication ID               Installation[22m
+org.gnome.Calculator         system
+org.gnome.Calculator         user
+=== probe2: unflagged info (both scopes) ===
+info_unflagged_rc=0
+=== probe2b: scope flag support on flatpak info ===
+info_system_rc=0
+info_user_rc=0
+Connection to machine cachyuninstall-test terminated.

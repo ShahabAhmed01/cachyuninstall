@@ -1,0 +1,24 @@
+[Unit]
+Description=CachyUninstall privileged helper (package transactions via libalpm)
+Documentation=man:cachyuninstall(1)
+
+[Service]
+Type=dbus
+BusName=org.cachyos.Uninstall
+ExecStart=/usr/bin/cachyuninstall-helper
+# On-demand only: the helper exists exactly as long as the bus keeps it.
+NoNewPrivileges=yes
+ProtectHome=read-only
+PrivateTmp=yes
+RestrictAddressFamilies=AF_UNIX
+# NOTE: ProtectSystem must NOT be used here. The helper's job is to unlink
+# package files anywhere under /usr, /etc, /opt, ... — a read-only root made
+# libalpm fail every unlink while still committing the DB removal, i.e. the
+# helper reported success and kept every installed file (found by physical QA).
+# Scope is enforced by HelperCore policy + polkit; the backend additionally
+# fails loudly on any libalpm error-level log instead of trusting commit().
+# ProtectHome stays: no package ships files under HOME, and leftover cleanup
+# runs client-side, never in the helper.
+
+[Install]
+WantedBy=multi-user.target

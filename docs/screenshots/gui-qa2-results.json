@@ -1,0 +1,137 @@
+[
+  {
+    "check": "ORP-00 target installed",
+    "ok": true,
+    "detail": "gspell"
+  },
+  {
+    "check": "ORP-01 orphan tab matches full-detail computation",
+    "ok": true,
+    "detail": "tab=8 full=8"
+  },
+  {
+    "check": "ORP-02 orphan tab matches CLI cross-check",
+    "ok": true,
+    "detail": "tab=8 cli=8 names=['gspell', 'knewstuff', 'knotifyconfig', 'kparts', 'kpty', 'ktextwidgets', 'libgedit-tepl', 'libpeas']"
+  },
+  {
+    "check": "ORP-03 target listed as orphan",
+    "ok": true,
+    "detail": "['gspell', 'knewstuff', 'knotifyconfig', 'kparts', 'kpty', 'ktextwidgets', 'libgedit-tepl', 'libpeas']"
+  },
+  {
+    "check": "ORP-04 screenshot orphan tab",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "KBD-01 arrow Down moves selection",
+    "ok": true,
+    "detail": "0 -> 1"
+  },
+  {
+    "check": "KBD-02 details populated for arrow selection",
+    "ok": true,
+    "detail": "gcc"
+  },
+  {
+    "check": "KBD-03 '/' focuses search",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "KBD-04 Ctrl+R opens Refresh note",
+    "ok": true,
+    "detail": "Refresh"
+  },
+  {
+    "check": "ORP-05 preview opens for orphan",
+    "ok": true,
+    "detail": "Uninstall gspell"
+  },
+  {
+    "check": "ORP-06 preview sections present",
+    "ok": true,
+    "detail": "Packages to remove (1) | Dependencies no longer needed afterwards | Kept - required by other applications"
+  },
+  {
+    "check": "ORP-07 orphan cascade opt-in default OFF",
+    "ok": true,
+    "detail": "offered=True"
+  },
+  {
+    "check": "ORP-08 Esc closed preview",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "ORP-09 cancel: target still installed",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "ORP-10 cancel: no history entry",
+    "ok": true,
+    "detail": "7 -> 7"
+  },
+  {
+    "check": "ORP-11 cancel: no dialogs left open",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "ORP-12 progress dialog created",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "ORP-13 result box reports removal",
+    "ok": true,
+    "detail": "gspell was removed. /  / Packages removed: 1 /  / Nothing else was modified."
+  },
+  {
+    "check": "ORP-14 progress received REAL events",
+    "ok": true,
+    "detail": "final status='35' bar=100"
+  },
+  {
+    "check": "ORP-15 pacman agrees: orphan gone",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "ORP-16 removed row gone from applications list",
+    "ok": true,
+    "detail": "rows=0"
+  },
+  {
+    "check": "ORP-17 orphan tab refreshed: target gone",
+    "ok": true,
+    "detail": "['enchant', 'knewstuff', 'knotifyconfig', 'kparts', 'kpty', 'ktextwidgets', 'libgedit-tepl', 'libpeas']"
+  },
+  {
+    "check": "ORP-18 orphan tab matches fresh CLI after removal",
+    "ok": true,
+    "detail": "tab=['enchant', 'knewstuff', 'knotifyconfig', 'kparts', 'kpty', 'ktextwidgets', 'libgedit-tepl', 'libpeas'] cli=['enchant', 'knewstuff', 'knotifyconfig', 'kparts', 'kpty', 'ktextwidgets', 'libgedit-tepl', 'libpeas']"
+  },
+  {
+    "check": "ORP-19 direct deps NOT removed (no silent cascade)",
+    "ok": true,
+    "detail": "gone=[] survived=12/12"
+  },
+  {
+    "check": "ORP-20 history has successful uninstall entry",
+    "ok": true,
+    "detail": "[('uninstall', 'gspell', 'success'), ('uninstall', 'gspell', 'success'), ('cleanup', 'konsole', 'success')]"
+  },
+  {
+    "check": "ORP-21 history tab visibly shows new entry",
+    "ok": true,
+    "detail": "8 rows"
+  },
+  {
+    "check": "ORP-22 helper journal clean",
+    "ok": true,
+    "detail": ""
+  }
+]

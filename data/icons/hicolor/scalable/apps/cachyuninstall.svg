@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <!-- Minimal package box with an upward removal chevron. Breeze-inspired. -->
+  <path d="M16 42 L64 22 L112 42 L112 106 Q112 112 106 112 L22 112 Q16 112 16 106 Z" fill="#3daee9"/>
+  <path d="M16 42 L64 22 L112 42 L64 62 Z" fill="#57c1ef"/>
+  <path d="M64 22 L70 24 L70 64 L64 62 Z" fill="#1d6f9f"/>
+  <path d="M44 90 L64 70 L84 90" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

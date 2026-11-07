@@ -1,0 +1,25 @@
+version: 2
+updates:
+  # Python dependencies (dev tooling installed via pip in .venv / CI)
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      time: "09:00"
+      timezone: "Asia/Karachi"
+    open-pull-requests-limit: 5
+    labels:
+      - "enhancement"
+      - "dependencies"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      time: "09:00"
+      timezone: "Asia/Karachi"
+    open-pull-requests-limit: 5
+    labels:
+      - "enhancement"
+      - "dependencies"

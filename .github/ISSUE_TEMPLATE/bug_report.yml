@@ -1,0 +1,98 @@
+name: Bug report
+description: Something broke or behaved unsafely
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Security first
+
+        CachyUninstall is a destructive-privilege application. **Do not open a
+        public issue for unpatched high-severity findings.** Report privately via
+        GitHub's **Security tab → "Report a vulnerability"** or email
+        security@cachyos.org. See [`SECURITY.md`](../../SECURITY.md) for the
+        policy and scope.
+
+        Never paste passwords or private file contents into this form.
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened
+      description: A clear description of the actual behavior.
+      placeholder: Tell us what actually happened.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+      description: The behavior you expected instead.
+      placeholder: Tell us what you expected to happen.
+    validations:
+      required: true
+  - type: input
+    id: distro
+    attributes:
+      label: Distro / kernel
+      description: Output of `uname -r` and your distro release.
+      placeholder: "CachyOS, kernel 6.x.x-..."
+    validations:
+      required: true
+  - type: dropdown
+    id: install_method
+    attributes:
+      label: Install method
+      options:
+        - pacman
+        - makepkg
+        - other (describe in "What happened")
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: CachyUninstall version
+      description: Output of `cachyuninstall --version` or the package version.
+      placeholder: "cachyuninstall x.y.z"
+    validations:
+      required: true
+  - type: dropdown
+    id: session_type
+    attributes:
+      label: Session type
+      options:
+        - Wayland
+        - X11
+        - headless
+    validations:
+      required: true
+  - type: textarea
+    id: repro_steps
+    attributes:
+      label: Steps to reproduce
+      description: Minimal numbered steps that trigger the bug.
+      placeholder: |
+        1. ...
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: |
+        Logs, CLI output, history/journal entries. For the privileged side:
+        `journalctl -u cachyuninstall-helper.service -b --no-pager`.
+        **Never paste passwords or private file contents.** If you have no
+        logs, write "N/A".
+      placeholder: Paste redacted logs or output here.
+    validations:
+      required: true
+  - type: checkboxes
+    id: security_ack
+    attributes:
+      label: Security policy
+      description: Confirm you have read the security reporting policy.
+      options:
+        - label: I have read [`SECURITY.md`](../../SECURITY.md) and I am not reporting an unpatched high-severity vulnerability in a public issue.
+          required: true

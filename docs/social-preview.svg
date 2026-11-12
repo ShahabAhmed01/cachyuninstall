@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Social preview source for CachyUninstall. 1280x640. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e1826"/>
+      <stop offset="100%" stop-color="#020a12"/>
+    </linearGradient>
+    <linearGradient id="box" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3daee9"/>
+      <stop offset="100%" stop-color="#2d8fc4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="640" fill="url(#bg)"/>
+
+  <!-- Top accent band -->
+  <rect y="0" width="1280" height="10" fill="#3daee9"/>
+
+  <!-- Package box icon (left) -->
+  <g transform="translate(130, 300)">
+    <!-- box sides -->
+    <path d="M0 40 L56 0 L112 40 L112 84 L0 84 Z" fill="url(#box)"/>
+    <!-- box left face -->
+    <path d="M0 40 L56 0 L56 42 L0 40 Z" fill="#57c1ef"/>
+    <!-- chevron (upward removal arrow) -->
+    <path d="M38 70 L56 50 L74 70" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Title -->
+  <text x="240" y="300" font-family="Segoe UI, sans-serif" font-size="44" font-weight="bold" fill="#ffffff">CachyUninstall</text>
+
+  <!-- Subtitle -->
+  <text x="240" y="365" font-family="Segoe UI, sans-serif" font-size="18" fill="#a0afc3">
+    Safe, transparent application uninstaller and leftover-data analyzer for Arch Linux / CachyOS
+  </text>
+
+  <!-- Tech stack -->
+  <text x="240" y="405" font-family="Segoe UI, sans-serif" font-size="14" fill="#6e7d91">
+    Python 3.11+  ·  PyQt6  ·  pyalpm  ·  polkit  ·  D-Bus  ·  GPL-3.0-or-later
+  </text>
+</svg>

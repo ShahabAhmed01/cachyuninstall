@@ -1,0 +1,19 @@
+# Code ownership for CachyUninstall.
+# Routing: reviewers are suggested automatically; the owner/admin retains
+# final merge authority on all paths.
+
+# Privilege boundary and security-critical code — require maintainer review.
+/src/cachyuninstall/privilege/ @ShahabAhmed01
+/docs/SECURITY.md @ShahabAhmed01
+
+# Packaging (affects every Arch/CachyOS installation).
+/PKGBUILD @ShahabAhmed01
+/.SRCINFO @ShahabAhmed01
+/cachyuninstall.install @ShahabAhmed01
+/data/ @ShahabAhmed01
+
+# CI configuration.
+/.github/workflows/ @ShahabAhmed01
+
+# Everything else — open to contributors with maintainer review.
+* @ShahabAhmed01

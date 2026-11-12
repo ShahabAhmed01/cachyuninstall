@@ -9,9 +9,11 @@ treated as release blockers.
 
 Report privately:
 
+* **Preferred:** use GitHub's private vulnerability reporting on this
+  repository — Security tab → "Report a vulnerability". This creates a private
+  advisory visible only to the maintainers.
 * Email: security@cachyos.org (subject: `[cachyuninstall] security report`)
-* Or enable private vulnerability reporting on the GitHub repository and use
-  "Report a vulnerability".
+  as a fallback if GitHub private reporting is unavailable to you.
 
 Include: affected version/commit, reproduction, impact, suggested severity,
 and whether you can help verify a fix.
